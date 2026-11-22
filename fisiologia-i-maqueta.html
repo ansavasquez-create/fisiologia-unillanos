@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fisiología I · Maqueta de la plataforma</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:wght@400;600;700&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#eef3f4;--surface:#fff;--ink:#14303a;--muted:#52666e;--line:#c9d6d9;--accent:#0c6b73;--accent-ink:#fff;--spike:#b86e00;--ok:#1d7a46;--bad:#b3261e;--tint:#e1ecee;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1b20;--surface:#15272e;--ink:#e3eef0;--muted:#9bb0b6;--line:#2b434b;--accent:#5fc4cc;--accent-ink:#06242a;--spike:#f0b24a;--ok:#5cc98a;--bad:#ff8a80;--tint:#1c333b;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1b20;--surface:#15272e;--ink:#e3eef0;--muted:#9bb0b6;--line:#2b434b;--accent:#5fc4cc;--accent-ink:#06242a;--spike:#f0b24a;--ok:#5cc98a;--bad:#ff8a80;--tint:#1c333b;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Literata",Georgia,serif}
+.wrap{max-width:860px;margin:0 auto;padding:20px 16px 48px}
+h1,h2,h3{font-weight:700;line-height:1.25;margin:0}
+h1{font-size:1.9rem}h2{font-size:1.3rem;margin-bottom:10px}h3{font-size:1.05rem}
+.ui,button,select,label,.tag,table{font-family:"Public Sans",system-ui,sans-serif}
+.lead{color:var(--muted);max-width:60ch;margin:6px 0 0}
+.nav{display:flex;gap:6px;margin:22px 0 16px;overflow-x:auto;padding-bottom:4px}
+.nav button{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:9px 14px;border-radius:8px;font-size:.9rem;cursor:pointer;white-space:nowrap}
+.nav button[aria-selected="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--spike);outline-offset:2px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;margin-bottom:16px}
+.units{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.units li{display:flex;justify-content:space-between;gap:10px;align-items:center;border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--bg)}
+.tag{font-size:.78rem;padding:2px 8px;border-radius:99px;background:var(--tint);color:var(--muted)}
+.tag.on{background:var(--accent);color:var(--accent-ink)}
+.bar{height:10px;background:var(--tint);border-radius:99px;overflow:hidden;margin:8px 0 4px}
+.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.read{display:flex;align-items:baseline;gap:8px;margin:10px 0}
+.read b{font:700 3rem/1 "Literata",serif;color:var(--spike)}
+.read span{color:var(--muted)}
+.ctl{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-top:12px}
+.ctl label{display:block;font-size:.85rem;color:var(--muted)}
+.ctl input[type=range]{width:100%}
+select{padding:8px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);width:100%}
+.meter{position:relative;height:46px;background:var(--tint);border-radius:8px;margin-top:14px;overflow:hidden}
+.meter .zero{position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--muted)}
+.meter .dot{position:absolute;top:8px;width:30px;height:30px;margin-left:-15px;border-radius:50%;background:var(--spike);transition:left .15s}
+.axis{display:flex;justify-content:space-between;font:.75rem "Public Sans",sans-serif;color:var(--muted);margin-top:4px}
+.note{font-size:.85rem;color:var(--muted);margin-top:10px}
+.q{margin-bottom:18px}
+.q p{margin:0 0 8px;font-weight:600}
+.opt{display:block;width:100%;text-align:left;border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:9px 12px;border-radius:8px;margin-bottom:6px;font-size:.92rem;cursor:pointer}
+.opt.ok{border-color:var(--ok);background:var(--tint)}
+.opt.bad{border-color:var(--bad)}
+.fb{font-size:.88rem;margin-top:4px;min-height:1.2em}
+.video{aspect-ratio:16/9;border:2px dashed var(--line);border-radius:10px;display:grid;place-items:center;color:var(--muted);text-align:center;padding:16px;font-family:"Public Sans",sans-serif}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th,td{text-align:left;padding:8px;border-bottom:1px solid var(--line)}
+a{color:var(--accent)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Fisiología I</h1>
+<p class="lead">Maqueta de la plataforma de apoyo al curso. Muestra cómo se verían las unidades, una simulación, un cuestionario, el progreso del estudiante y la vista docente.</p>
+
+<div class="nav" role="tablist" aria-label="Secciones">
+<button role="tab" aria-selected="true" data-t="t1">Unidades</button>
+<button role="tab" aria-selected="false" data-t="t2">Simulador</button>
+<button role="tab" aria-selected="false" data-t="t3">Cuestionario</button>
+<button role="tab" aria-selected="false" data-t="t4">Video y recursos</button>
+<button role="tab" aria-selected="false" data-t="t5">Vista docente</button>
+</div>
+
+<section id="t1">
+<div class="panel">
+<h2>Mi progreso en la unidad 3</h2>
+<div class="bar" aria-hidden="true"><i id="pbar"></i></div>
+<div class="ui" id="ptxt" style="font-size:.88rem;color:var(--muted)"></div>
+</div>
+<div class="panel">
+<h2>Unidades del curso</h2>
+<ul class="units ui">
+<li><span>1. Introducción a la fisiología y homeostasis</span><span class="tag">En preparación</span></li>
+<li><span>2. Membrana celular y transporte</span><span class="tag">En preparación</span></li>
+<li><span>3. Potencial de membrana y potencial de acción</span><span class="tag on">Disponible en esta maqueta</span></li>
+<li><span>4. Sinapsis y neurotransmisores</span><span class="tag">En preparación</span></li>
+<li><span>5. Neuroanatomía y sistema nervioso central</span><span class="tag">En preparación</span></li>
+<li><span>6. Sistema nervioso periférico y autónomo</span><span class="tag">En preparación</span></li>
+</ul>
+</div>
+</section>
+
+<section id="t2" hidden>
+<div class="panel">
+<h2>Potencial de equilibrio de Nernst</h2>
+<p class="lead">Elige un ion y cambia las concentraciones. El punto muestra hacia qué valor de potencial de membrana empujaría ese ion si fuera el único permeable.</p>
+<div class="read"><b id="eout">0</b><span>mV</span></div>
+<div class="meter" aria-hidden="true"><div class="zero"></div><div class="dot" id="dot"></div></div>
+<div class="axis"><span>−100 mV</span><span>0</span><span>+140 mV</span></div>
+<div class="ctl">
+<div><label for="ion">Ion</label><select id="ion"><option value="K">Potasio (K⁺)</option><option value="Na">Sodio (Na⁺)</option><option value="Cl">Cloruro (Cl⁻)</option><option value="Ca">Calcio (Ca²⁺)</option></select></div>
+<div><label for="co">Concentración extracelular: <b id="cov"></b> mM</label><input id="co" type="range" min="0.1" max="150" step="0.1"></div>
+<div><label for="ci">Concentración intracelular: <b id="civ"></b> mM</label><input id="ci" type="range" min="0.0001" max="150" step="0.0001"></div>
+<div><label for="tp">Temperatura: <b id="tpv"></b> °C</label><input id="tp" type="range" min="20" max="42" step="0.5" value="37"></div>
+</div>
+<p class="note">Ecuación: E = (R·T / z·F) · ln([ion]ext / [ion]int). Los valores iniciales son concentraciones típicas de referencia en células de mamífero y no corresponden a una especie concreta. Deben contrastarse con el texto guía del curso.</p>
+</div>
+</section>
+
+<section id="t3" hidden>
+<div class="panel">
+<h2>Cuestionario de práctica</h2>
+<p class="lead">Responder con retroalimentación inmediata refuerza la memoria (práctica de recuperación).</p>
+<div id="quiz" style="margin-top:14px"></div>
+</div>
+</section>
+
+<section id="t4" hidden>
+<div class="panel">
+<h2>Video de la unidad</h2>
+<div class="video">Aquí se incrustará un video de la unidad (por ejemplo, desde YouTube o Vimeo) con preguntas de comprensión debajo.</div>
+</div>
+<div class="panel">
+<h2>Recursos enlazados</h2>
+<ul class="ui" style="padding-left:18px;margin:0">
+<li><a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a>: imágenes con licencia abierta</li>
+<li><a href="https://openstax.org" target="_blank" rel="noopener">OpenStax</a>: textos abiertos de biología y anatomía y fisiología</li>
+</ul>
+<p class="note">Cada recurso final tendrá su licencia verificada y su atribución.</p>
+</div>
+</section>
+
+<section id="t5" hidden>
+<div class="panel">
+<h2>Vista docente (datos ficticios)</h2>
+<p class="lead">En la versión final el docente verá el avance real de cada estudiante y los errores más frecuentes del curso.</p>
+<table>
+<tr><th>Pregunta</th><th>Aciertos del curso</th></tr>
+<tr><td>Potencial de equilibrio del K⁺ en reposo</td><td>82 %</td></tr>
+<tr><td>Efecto de aumentar el K⁺ extracelular</td><td>54 %</td></tr>
+<tr><td>Transporte que usa ATP directamente</td><td>71 %</td></tr>
+</table>
+<table style="margin-top:14px">
+<tr><th>Estudiante</th><th>Unidad 3</th><th>Último ingreso</th></tr>
+<tr><td>Estudiante A</td><td>100 %</td><td>Hoy</td></tr>
+<tr><td>Estudiante B</td><td>50 %</td><td>Hace 3 días</td></tr>
+<tr><td>Estudiante C</td><td>0 %</td><td>Hace 12 días</td></tr>
+</table>
+</div>
+</section>
+
+<p class="note">Maqueta de demostración. El progreso se guarda solo en este navegador; en la versión final se guardará en la cuenta de cada estudiante, con su autorización.</p>
+</div>
+
+<script>
+(function(){
+var S={sim:false,q:{}};
+try{var s=localStorage.getItem("fisio1");if(s)S=JSON.parse(s)}catch(e){}
+function save(){try{localStorage.setItem("fisio1",JSON.stringify(S))}catch(e){}}
+function prog(){var n=(S.sim?1:0)+Object.keys(S.q).length,p=Math.round(n/4*100);
+document.getElementById("pbar").style.width=p+"%";
+document.getElementById("ptxt").textContent=p+" % completado: simulador y 3 preguntas";}
+var tabs=document.querySelectorAll(".nav button");
+tabs.forEach(function(b){b.onclick=function(){tabs.forEach(function(x){x.setAttribute("aria-selected",x===b?"true":"false");document.getElementById(x.dataset.t).hidden=x!==b})}});
+
+var ions={K:{z:1,o:5,i:140},Na:{z:1,o:145,i:12},Cl:{z:-1,o:110,i:10},Ca:{z:2,o:1.8,i:0.0001}};
+var ion=document.getElementById("ion"),co=document.getElementById("co"),ci=document.getElementById("ci"),tp=document.getElementById("tp");
+function setIon(){var d=ions[ion.value];co.value=d.o;ci.value=d.i;calc(false)}
+function calc(touched){
+var d=ions[ion.value],o=parseFloat(co.value),i=parseFloat(ci.value),T=parseFloat(tp.value)+273.15;
+var E=(8.314*T/(d.z*96485))*Math.log(o/i)*1000;
+document.getElementById("eout").textContent=(E>0?"+":"")+E.toFixed(1).replace("-","−");
+document.getElementById("cov").textContent=o;document.getElementById("civ").textContent=i;document.getElementById("tpv").textContent=tp.value;
+var pos=Math.max(0,Math.min(100,(E+100)/240*100));
+var dot=document.getElementById("dot");dot.style.left=pos+"%";
+if(touched&&!S.sim){S.sim=true;save();prog()}}
+ion.onchange=function(){setIon();S.sim=S.sim;};
+[co,ci,tp].forEach(function(e){e.oninput=function(){calc(true)}});
+setIon();
+
+var Q=[
+{t:"Si la membrana fuera permeable únicamente al K⁺, el potencial de membrana tendería a:",o:["El potencial de equilibrio del Na⁺","El potencial de equilibrio del K⁺","0 mV","El potencial de equilibrio del Cl⁻"],a:1,f:"El potencial tiende al potencial de equilibrio del ion al que la membrana es permeable."},
+{t:"Al aumentar la concentración extracelular de K⁺, el potencial de equilibrio del K⁺ se vuelve:",o:["Más negativo","Menos negativo","No cambia","Positivo siempre"],a:1,f:"Disminuye el cociente [K⁺]ext/[K⁺]int a favor de la salida, por lo que el logaritmo se acerca a cero y el potencial se hace menos negativo. Compruébalo en el simulador."},
+{t:"¿Cuál de estos mecanismos usa ATP directamente?",o:["Difusión facilitada","Bomba Na⁺/K⁺-ATPasa","Canal de fuga de K⁺","Difusión simple"],a:1,f:"La Na⁺/K⁺-ATPasa es transporte activo primario: hidroliza ATP para mover iones contra su gradiente."}];
+var box=document.getElementById("quiz");
+Q.forEach(function(q,k){
+var d=document.createElement("div");d.className="q";
+var p=document.createElement("p");p.textContent=(k+1)+". "+q.t;d.appendChild(p);
+var fb=document.createElement("div");fb.className="fb ui";
+q.o.forEach(function(txt,j){var b=document.createElement("button");b.className="opt ui";b.textContent=txt;
+b.onclick=function(){var ok=j===q.a;b.classList.add(ok?"ok":"bad");
+fb.style.color=ok?"var(--ok)":"var(--bad)";fb.textContent=(ok?"Correcto. ":"Revisa de nuevo. ")+(ok?q.f:"");
+if(ok&&!S.q[k]){S.q[k]=1;save();prog()}};d.appendChild(b)});
+d.appendChild(fb);box.appendChild(d)});
+prog();
+})();
+</script>
+</body>
+</html>
